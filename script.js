@@ -82,9 +82,13 @@ document.getElementById('edit-form').addEventListener('submit', async (e) => {
         body: JSON.stringify({ name, age, email })
     });
 
-    const updatedPerson = await response.json();
-    updatePersonInTable(updatedPerson);
-    document.getElementById('edit-modal').style.display = 'none';
+    if (response.ok) {
+        const updatedPerson = await response.json();
+        updatePersonInTable(updatedPerson);
+        document.getElementById('edit-modal').style.display = 'none';
+    } else {
+        console.error('Failed to update person', response.status);
+    }
 });
 
 function updatePersonInTable(person) {
