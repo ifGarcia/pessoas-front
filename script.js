@@ -51,10 +51,14 @@ function addPersonToTable(person) {
 }
 
 async function deletePerson(id, row) {
-    await fetch(`${apiUrl}/${id}`, {
+    const response = await fetch(`${apiUrl}/${id}`, {
         method: 'DELETE'
     });
-    row.remove();
+    if (response.ok) {
+        row.remove();
+    } else {
+        console.error('Failed to delete person', response.status);
+    }
 }
 
 function openEditModal(person) {

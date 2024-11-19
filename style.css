@@ -32,33 +32,6 @@ button:hover {
     background-color: #4cae4c;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    background-color: white;
-    margin: 5px 0;
-    padding: 10px;
-    border: 1px solid #ddd;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-li button {
-    background-color: #d9534f;
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-li button:hover {
-    background-color: #c9302c;
-}
-
 table {
     width: 100%;
     border-collapse: collapse;
