@@ -3,14 +3,14 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, onChildAdded, onChildChanged, onChildRemoved } from 'firebase/database';
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  databaseURL: "YOUR_DATABASE_URL",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
+    apiKey: "AIzaSyB5a-oWJ56m-q_yFJzbPZ3UBq6TVL-4rxY",
+    authDomain: "pessoas-realtime-database.firebaseapp.com",
+    databaseURL: "https://pessoas-realtime-database-default-rtdb.firebaseio.com",
+    projectId: "pessoas-realtime-database",
+    storageBucket: "pessoas-realtime-database.firebasestorage.app",
+    messagingSenderId: "581407056232",
+    appId: "1:581407056232:web:46a34a9a705f56f1f436dd"
+  };
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
