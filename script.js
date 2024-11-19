@@ -1,5 +1,21 @@
+// Importar e configurar o Firebase
+import { initializeApp } from 'firebase/app';
+import { getDatabase, ref, onChildAdded, onChildChanged, onChildRemoved } from 'firebase/database';
+
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  databaseURL: "YOUR_DATABASE_URL",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
 const apiUrl = 'https://pessoas-api-802e6fbb1ada.herokuapp.com/people';
-const socket = io('https://pessoas-api-802e6fbb1ada.herokuapp.com');
 
 document.getElementById('person-form').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -114,16 +130,17 @@ window.onclick = function(event) {
   }
 }
 
-socket.on('personAdded', (person) => {
-  addPersonToTable(person);
+const peopleRef = ref(db, 'people');
+onChildAdded(peopleRef, (data) => {
+  addPersonToTable(data.val());
 });
 
-socket.on('personUpdated', (person) => {
-  updatePersonInTable(person);
+onChildChanged(peopleRef, (data) => {
+  updatePersonInTable(data.val());
 });
 
-socket.on('personDeleted', (id) => {
-  const row = document.querySelector(`tr[data-id='${id}']`);
+onChildRemoved(peopleRef, (data) => {
+  const row = document.querySelector(`tr[data-id='${data.key}']`);
   if (row) {
     row.remove();
   }
